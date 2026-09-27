@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biznes va tadbirkorlik, BMC va BPM</title>
+<meta name="description" content="1-mashg'ulot: biznes va tadbirkorlik asoslari, Business Model Canvas va BPM — veb-taqdimot va interaktiv test.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+<style>
+  :root {
+    --bg: #0a081b;
+    --card: #110f28;
+    --text: #e0e4e6;
+    --muted: #9aa3b5;
+    --teal: #19f0bf;
+    --cyan: #29dddA;
+    --blue: #3e9be6;
+    --bad: #ff6b7a;
+    --radius: 22px;
+  }
+  html, body { background: var(--bg); }
+  .reveal-viewport {
+    background: radial-gradient(1200px 600px at 20% -10%, #0d3a4a 0%, transparent 60%),
+                radial-gradient(900px 500px at 110% 0%, #0b1a5c 0%, transparent 55%), var(--bg);
+  }
+  .reveal { font-family: Inter, Arial, sans-serif; color: var(--text); font-size: 26px; }
+  .reveal .slides { text-align: left; }
+  .reveal .slides section { height: 100%; padding: 50px 70px; box-sizing: border-box; }
+  .reveal h1, .reveal h2, .reveal h3 { font-family: Inter, Arial, sans-serif; color: #fff; margin: 0 0 .5em; line-height: 1.15; }
+  .reveal h1 { font-size: 64px; font-weight: 800; }
+  .reveal h2 { font-size: 44px; font-weight: 800; }
+  .reveal h3 { font-size: 26px; font-weight: 700; margin-bottom: .35em; }
+  .reveal p { margin: 0 0 .6em; line-height: 1.45; }
+  .muted { color: var(--muted); }
+  .reveal b, .reveal strong { font-weight: 700; }
+  .reveal i { font-style: italic; }
+  .eyebrow { display: inline-block; font-size: 15px; letter-spacing: .12em; font-weight: 700; color: var(--bg);
+             background: var(--teal); border-radius: 999px; padding: 6px 14px; margin-bottom: 18px; }
+  .grid { display: grid; gap: 20px; }
+  .g2 { grid-template-columns: 1fr 1fr; }
+  .g3 { grid-template-columns: repeat(3, 1fr); }
+  .g4 { grid-template-columns: repeat(4, 1fr); }
+  .card { background: var(--card); border: 2px solid var(--teal); border-radius: var(--radius); padding: 20px 24px; }
+  .card:nth-child(3n+2) { border-color: var(--cyan); }
+  .card:nth-child(3n) { border-color: var(--blue); }
+  .card p { font-size: 20px; margin: 0; }
+  .card h3 { font-size: 23px; }
+  .split { display: grid; grid-template-columns: 1fr 1.15fr; gap: 50px; align-items: center; height: 100%; }
+  .split img, .img-round { width: 100%; border-radius: var(--radius); display: block; object-fit: cover; }
+  .title-slide { display: grid !important; grid-template-columns: 1.3fr 1fr; gap: 50px; align-items: center; }
+  .title-slide img { height: 620px; width: 100%; object-fit: cover; border-radius: var(--radius); }
+  .pill-num { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%;
+              background: var(--teal); color: var(--bg); font-weight: 800; font-size: 19px; margin-bottom: 10px; }
+
+  /* Jarayon oqimi */
+  .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 40px; position: relative; }
+  .flow .step { position: relative; padding: 0 18px; }
+  .flow .dot { width: 64px; height: 64px; border-radius: 50%; background: var(--teal); color: var(--bg);
+               display: grid; place-items: center; font-weight: 800; font-size: 26px; position: relative; z-index: 1; }
+  .flow .step:not(:last-child)::after { content: ""; position: absolute; top: 31px; left: 82px; right: -18px;
+               height: 3px; background: linear-gradient(90deg, var(--teal), var(--blue)); }
+  .flow h3 { margin-top: 18px; }
+  .flow p { font-size: 20px; color: var(--muted); }
+
+  /* Business Model Canvas to'ri (klassik joylashuv) */
+  .bmc { display: grid; gap: 10px; height: 540px;
+         grid-template-columns: repeat(10, 1fr);
+         grid-template-rows: 1fr 1fr .8fr;
+         grid-template-areas:
+           "kp kp ka ka vp vp cr cr cs cs"
+           "kp kp kr kr vp vp ch ch cs cs"
+           "co co co co co rs rs rs rs rs"; }
+  .bmc > div { background: var(--card); border: 2px solid var(--cyan); border-radius: 16px; padding: 14px 16px; overflow: hidden; }
+  .bmc b { display: block; font-size: 20px; color: #fff; }
+  .bmc small { display: block; font-size: 15px; color: var(--teal); margin-bottom: 6px; letter-spacing: .02em; }
+  .bmc span { font-size: 18px; color: var(--muted); line-height: 1.35; display: block; }
+  .bmc span.n { display: inline; font-size: inherit; color: var(--teal); font-weight: 800; margin-right: 8px; }
+  .kp{grid-area:kp} .ka{grid-area:ka} .kr{grid-area:kr} .vp{grid-area:vp; border-color: var(--teal) !important}
+  .cr{grid-area:cr} .ch{grid-area:ch} .cs{grid-area:cs} .co{grid-area:co; border-color: var(--blue) !important} .rs{grid-area:rs; border-color: var(--blue) !important}
+
+  /* Test */
+  .quiz { max-width: 1000px; }
+  .quiz .q { font-size: 30px; font-weight: 700; color: #fff; margin: 10px 0 24px; min-height: 80px; }
+  .quiz .opts { display: grid; gap: 12px; }
+  .quiz button.opt { all: unset; box-sizing: border-box; cursor: pointer; display: block; width: 100%;
+         background: var(--card); border: 2px solid #2a2850; border-radius: 16px; padding: 14px 20px; font-size: 22px; color: var(--text); }
+  .quiz button.opt:hover:not([disabled]), .quiz button.opt:focus-visible { border-color: var(--cyan); }
+  .quiz button.opt.ok { border-color: var(--teal); background: #0d2f2c; }
+  .quiz button.opt.no { border-color: var(--bad); background: #2d1020; }
+  .quiz .bar { display: flex; justify-content: space-between; align-items: center; margin-top: 22px; font-size: 20px; }
+  .btn { all: unset; cursor: pointer; background: var(--teal); color: var(--bg); font-weight: 700; padding: 12px 26px; border-radius: 999px; font-size: 20px; }
+  .btn:focus-visible { outline: 3px solid #fff; }
+  .explain { font-size: 19px; color: var(--muted); min-height: 30px; margin-top: 14px; }
+  .progress { height: 6px; background: #221f44; border-radius: 99px; overflow: hidden; margin-top: 6px; }
+  .progress i { display: block; height: 100%; background: var(--teal); width: 0; transition: width .3s; }
+
+  .links a { color: var(--teal); }
+  .reveal .controls { color: var(--teal); }
+  .reveal .progress { color: var(--teal); }
+  ol.clean { margin: 0; padding-left: 1.2em; } ol.clean li { margin-bottom: .45em; font-size: 22px; }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <!-- 1. Titul -->
+  <section class="title-slide">
+    <div>
+      <span class="eyebrow">1-MASHG'ULOT</span>
+      <h1>Biznes va tadbirkorlik, Business Model Canvas va BPM</h1>
+      <p class="muted">Talabalar uchun asosiy tushunchalar</p>
+      <p class="muted" style="font-size:18px;margin-top:40px">Slaydlar orasida o'tish: ← → tugmalari · Umumiy ko'rinish: <b>Esc</b></p>
+    </div>
+    <img src="assets/title.jpg" alt="Biznes mavzusidagi illyustratsiya">
+  </section>
+
+  <!-- 2. Biznes va tadbirkorlik -->
+  <section>
+    <div class="split" style="grid-template-columns: .8fr 1.4fr">
+      <img src="assets/biznes.jpg" alt="Doska oldida g'oyani tushuntirayotgan tadbirkor" style="height:600px">
+      <div>
+        <h2>Biznes va Tadbirkorlik</h2>
+        <div class="grid g2">
+          <div class="card"><h3>Biznes nima?</h3><p>Qonuniy tijorat faoliyati orqali daromad olish</p></div>
+          <div class="card"><h3>Tadbirkor kim?</h3><p>Biznes bilan shug'ullanuvchi, tashabbus ko'rsatuvchi shaxs</p></div>
+          <div class="card"><h3>Tadbirkorlik nima?</h3><p>Xavf-xatarni qabul qilib, yangi g'oyalarni amalga oshirish</p></div>
+          <div class="card"><h3>Farqi</h3><p><b>Biznes</b> — faoliyat; <b>tadbirkorlik</b> — innovatsiya va tavakkalchilik bilan faoliyat</p></div>
+        </div>
+        <div class="card" style="margin-top:20px"><h3>Misol</h3><p>Do'konda tayyor mahsulotni sotish = <b>biznes</b> · Yangi mahsulot yaratib, bozorga chiqarish = <b>tadbirkorlik</b></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Sohalar -->
+  <section>
+    <h2 style="margin-top:40px">Biznes Sohalari</h2>
+    <div class="grid g4" style="margin-top:30px">
+      <div><img class="img-round" src="assets/savdo.png" alt="Kiyim do'koni" style="height:150px"><h3 style="margin-top:18px">Savdo</h3><p class="muted">Mahsulotlarni sotish — kiyim do'koni, bozor</p></div>
+      <div><img class="img-round" src="assets/xizmat.png" alt="Restoran" style="height:150px"><h3 style="margin-top:18px">Xizmat ko'rsatish</h3><p class="muted">Odamlarga yordam berish — salon, restoran, taksi</p></div>
+      <div><img class="img-round" src="assets/ishlab-chiqarish.png" alt="Ustaxona" style="height:150px"><h3 style="margin-top:18px">Ishlab chiqarish</h3><p class="muted">Mahsulot tayyorlash — fabrika, mebel ustaxonasi</p></div>
+      <div><img class="img-round" src="assets/it.png" alt="Dasturchilar jamoasi" style="height:150px"><h3 style="margin-top:18px">IT va Texnologiya</h3><p class="muted">Dastur, veb-sayt, mobil ilova yaratish</p></div>
+    </div>
+  </section>
+
+  <!-- 4. Qanday ishlaydi -->
+  <section>
+    <h2>Biznes Qanday Ishlaydi?</h2>
+    <div class="flow">
+      <div class="step fragment"><div class="dot">1</div><h3>Muammo</h3><p>Ehtiyoj yoki "og'riq"ni aniqlash</p></div>
+      <div class="step fragment"><div class="dot">2</div><h3>Mahsulot</h3><p>Yechim — mahsulot yoki xizmat</p></div>
+      <div class="step fragment"><div class="dot">3</div><h3>Mijoz</h3><p>Mahsulotni sotib oluvchilar</p></div>
+      <div class="step fragment"><div class="dot">4</div><h3>Daromad</h3><p>Sotuv va biznes rivoji</p></div>
+    </div>
+    <div class="grid g3" style="margin-top:60px">
+      <div class="card"><h3>Muammo aniqlash</h3><p>Odamlar biror muammo yoki ehtiyojga ega bo'ladi</p></div>
+      <div class="card"><h3>Yechim taklif qilish</h3><p>Muammoni hal qiluvchi mahsulot yoki xizmat tayyorlaysiz</p></div>
+      <div class="card"><h3>Daromad olish</h3><p>Mijozlar sotib oladi va biznes rivojlanadi</p></div>
+    </div>
+  </section>
+
+  <!-- 5. BMC nima -->
+  <section>
+    <div class="split">
+      <img src="assets/bmc.jpg" alt="Business Model Canvas ustida ishlayotgan jamoa">
+      <div>
+        <span class="eyebrow">ASOSIY TUSHUNCHA</span>
+        <h2>Business Model Canvas nima?</h2>
+        <p>Alexander Osterwalder va Yves Pigneur tomonidan ishlab chiqilgan (<i>Business Model Generation</i>, 2010) vizual asbob. U biznes modelini <b>bir sahifada</b> <b>9 ta blok</b> orqali tasvirlaydi.</p>
+        <div class="grid g2" style="margin-top:24px">
+          <div class="card"><h3>Tez tahlil</h3><p>Biznesning barcha muhim qismlari bitta joyda</p></div>
+          <div class="card"><h3>Oson tushunish</h3><p>Hamkorlar va jamoa bilan samarali muloqot</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 9 blok -->
+  <section>
+    <h2 style="font-size:38px">Business Model Canvas — 9 blok</h2>
+    <div class="bmc">
+      <div class="kp"><b><span class="n">8</span>Key Partnerships</b><small>Asosiy hamkorlar</small><span>Kim bilan hamkorlik qilamiz? Yetkazib beruvchilar kimlar?</span></div>
+      <div class="ka"><b><span class="n">7</span>Key Activities</b><small>Asosiy faoliyat</small><span>Qiymat yaratish uchun nima qilamiz?</span></div>
+      <div class="kr"><b><span class="n">6</span>Key Resources</b><small>Asosiy resurslar</small><span>Qanday resurslar kerak?</span></div>
+      <div class="vp"><b><span class="n">2</span>Value Propositions</b><small>Qiymat taklifi</small><span>Mijozga qanday muammoni hal qilamiz, qanday foyda beramiz?</span></div>
+      <div class="cr"><b><span class="n">4</span>Customer Relationships</b><small>Mijozlar bilan munosabat</small><span>Mijoz bilan qanday aloqa quramiz?</span></div>
+      <div class="ch"><b><span class="n">3</span>Channels</b><small>Kanallar</small><span>Mijozga qanday yetib boramiz?</span></div>
+      <div class="cs"><b><span class="n">1</span>Customer Segments</b><small>Mijozlar segmenti</small><span>Kim uchun qiymat yaratamiz? Eng muhim mijozlarimiz kimlar?</span></div>
+      <div class="co"><b><span class="n">9</span>Cost Structure</b><small>Xarajatlar tuzilmasi</small><span>Eng katta xarajatlar qaysilar?</span></div>
+      <div class="rs"><b><span class="n">5</span>Revenue Streams</b><small>Daromad manbalari</small><span>Mijozlar nima uchun va qanday to'laydi?</span></div>
+    </div>
+  </section>
+
+  <!-- 7. Onlayn kurs misoli -->
+  <section>
+    <h2 style="font-size:38px">Amaliy misol: Onlayn ta'lim kursi</h2>
+    <div class="bmc">
+      <div class="kp"><b>Hamkorlar</b><span>Universitetlar, IT-kompaniyalar, to'lov tizimlari</span></div>
+      <div class="ka"><b>Asosiy faoliyat</b><span>Dars tayyorlash, platformani yuritish, marketing</span></div>
+      <div class="kr"><b>Resurslar</b><span>O'qituvchilar, server, video-kontent</span></div>
+      <div class="vp"><b>Qiymat</b><span>Sifatli ta'lim, qulay vaqtda va joyda o'qish, sertifikat</span></div>
+      <div class="cr"><b>Munosabatlar</b><span>Mentor yordami, chat, o'quvchilar jamoasi</span></div>
+      <div class="ch"><b>Kanallar</b><span>Veb-sayt, mobil ilova, YouTube, Telegram</span></div>
+      <div class="cs"><b>Mijozlar</b><span>O'quvchilar, talabalar, kasbini o'zgartirmoqchi kattalar</span></div>
+      <div class="co"><b>Xarajatlar</b><span>Server, o'qituvchilar maoshi, reklama</span></div>
+      <div class="rs"><b>Daromad</b><span>Kurs to'lovi, oylik obuna, sertifikat uchun to'lov</span></div>
+    </div>
+  </section>
+
+  <!-- 8. BPM -->
+  <section>
+    <div class="split" style="grid-template-columns: 1.1fr 1fr; height:auto; gap:40px">
+      <div>
+        <h2>BPM va biznes jarayoni</h2>
+        <p><b>Business Process Management (BPM)</b> — biznes faoliyatini modellashtirish, avtomatlashtirish, nazorat qilish va takomillashtirish uchun qo'llaniladigan intizomli yondashuv.</p>
+      </div>
+      <img src="assets/bpm.jpg" alt="Jarayonlar xaritasi illyustratsiyasi" style="height:330px">
+    </div>
+    <div class="grid g3" style="margin-top:30px">
+      <div class="card"><h3>Biznes jarayoni</h3><p>Biror maqsadga erishish uchun ketma-ket bajariladigan ishlar</p></div>
+      <div class="card"><h3>Jarayonlar xaritasi</h3><p>Har bir bosqichni diagramma ko'rinishida tasvirlovchi sxema</p></div>
+      <div class="card"><h3>Nima uchun kerak?</h3><p>Ishlarni tezlashtirish, xatolarni kamaytirish, samaradorlikni oshirish</p></div>
+    </div>
+  </section>
+
+  <!-- 9. Onlayn buyurtma -->
+  <section>
+    <h2 style="font-size:40px">Jarayon xaritasi: Onlayn buyurtma</h2>
+    <div class="flow">
+      <div class="step fragment"><div class="dot">🛒</div><h3>Buyurtma beriladi</h3><p>Mijoz onlayn formani to'ldiradi</p></div>
+      <div class="step fragment"><div class="dot">📥</div><h3>Qabul qilinadi</h3><p>Buyurtma tizimga yoziladi</p></div>
+      <div class="step fragment"><div class="dot">💳</div><h3>To'lov tekshiriladi</h3><p>To'lov holati tasdiqlanadi</p></div>
+      <div class="step fragment"><div class="dot">📦</div><h3>Mahsulot tayyorlanadi</h3><p>Paketlash va jo'natishga tayyorlash</p></div>
+    </div>
+    <div class="grid g3" style="margin-top:60px">
+      <div class="card"><h3>Ketma-ketlik muhim</h3><p>Har bir bosqich tartib bilan bajariladi</p></div>
+      <div class="card"><h3>Muammo ta'siri</h3><p>Bir bosqichda muammo bo'lsa, butun jarayon sekinlashadi</p></div>
+      <div class="card"><h3>BPM yechimi</h3><p>BPM orqali har bir bosqichni o'lchash va takomillashtirish mumkin</p></div>
+    </div>
+  </section>
+
+  <!-- 10. Xulosa -->
+  <section>
+    <div class="split" style="grid-template-columns: 1.4fr .8fr">
+      <div>
+        <h2>Xulosa: bugun nimalarni tushundik?</h2>
+        <div class="grid g2">
+          <div class="card"><span class="pill-num">1</span><h3>Biznes va tadbirkorlik</h3><p>Biznes — tijorat faoliyati; tadbirkorlik — innovatsiya va tavakkalchilik</p></div>
+          <div class="card"><span class="pill-num">2</span><h3>Business Model Canvas</h3><p>Biznes modelini 9 ta blokda tasvirlovchi vizual asbob</p></div>
+          <div class="card"><span class="pill-num">3</span><h3>BPM</h3><p>Jarayonlarni tahlil qilish, takomillashtirish va avtomatlashtirish</p></div>
+          <div class="card"><span class="pill-num">4</span><h3>Amaliy qo'llanish</h3><p>Canvas va BPM har qanday biznesda samaradorlikni oshiradi</p></div>
+        </div>
+      </div>
+      <img src="assets/xulosa.jpg" alt="Faol qatnashayotgan talabalar" style="height:600px">
+    </div>
+  </section>
+
+  <!-- 11. Test -->
+  <section id="test">
+    <span class="eyebrow">O'ZINGIZNI TEKSHIRING</span>
+    <div class="quiz" id="quiz" aria-live="polite">
+      <div class="bar" style="margin-top:0"><span id="qcount"></span><span id="qscore"></span></div>
+      <div class="progress"><i id="qprog"></i></div>
+      <div class="q" id="qtext"></div>
+      <div class="opts" id="qopts"></div>
+      <div class="explain" id="qexp"></div>
+      <div class="bar"><span></span><button class="btn" id="qnext" hidden>Keyingi savol →</button></div>
+    </div>
+  </section>
+
+  <!-- 12. Topshiriqlar -->
+  <section>
+    <h2>Amaliy topshiriqlar</h2>
+    <div class="grid g2">
+      <div class="card"><h3>1. O'z BMC'ingiz</h3><p>O'zingizga tanish biznes (non do'koni, o'quv markazi, taksi xizmati)ni tanlab, 9 blokni to'ldiring.</p></div>
+      <div class="card"><h3>2. Biznesmi yoki tadbirkorlik?</h3><p>Uchta misol keltiring va har biri nima uchun biznes yoki tadbirkorlik ekanini asoslang.</p></div>
+      <div class="card"><h3>3. Jarayon xaritasi</h3><p>Kafeda buyurtma berishdan to'lovgacha bo'lgan jarayonni 5–7 bosqichda chizing.</p></div>
+      <div class="card"><h3>4. "Tor joy"ni toping</h3><p>3-topshiriqdagi xaritada eng ko'p vaqt oladigan bosqichni aniqlang va uni yaxshilash yo'lini taklif qiling.</p></div>
+    </div>
+    <p class="muted links" style="margin-top:24px;font-size:20px">To'liq keyslar va javoblar: <a href="https://github.com/zzynddnv-lang/prezidentatsiya/blob/main/TOPSHIRIQLAR.md">TOPSHIRIQLAR.md</a></p>
+  </section>
+
+  <!-- 13. Manbalar -->
+  <section>
+    <h2>Manbalar va yuklab olish</h2>
+    <ol class="clean">
+      <li>A. Osterwalder, Y. Pigneur. <i>Business Model Generation</i>. Wiley, 2010; strategyzer.com</li>
+      <li>ABPMP. <i>BPM CBOK — Guide to the Business Process Management Common Body of Knowledge</i></li>
+      <li>Workflow Management Coalition (WfMC); IBM — "What is business process management?"</li>
+      <li>O'zbekiston Respublikasining "Tadbirkorlik faoliyati erkinligining kafolatlari to'g'risida"gi Qonuni</li>
+    </ol>
+    <div class="grid g3 links" style="margin-top:40px">
+      <a class="card" href="Biznes-va-tadbirkorlik-Business-Model-Canvas-va-BPM.pdf" style="text-decoration:none"><h3>📄 PDF</h3><p>Taqdimotning PDF versiyasi</p></a>
+      <a class="card" href="https://github.com/zzynddnv-lang/prezidentatsiya/raw/main/Biznes-va-tadbirkorlik-Business-Model-Canvas-va-BPM.pptx" style="text-decoration:none"><h3>📊 PowerPoint</h3><p>Tahrirlanadigan .pptx fayl</p></a>
+      <a class="card" href="https://github.com/zzynddnv-lang/prezidentatsiya" style="text-decoration:none"><h3>💻 GitHub</h3><p>Loyiha repozitoriyasi</p></a>
+    </div>
+  </section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script>
+const QUESTIONS = [
+  { q: "Business Model Canvas nechta blokdan iborat?", o: ["5 ta", "7 ta", "9 ta", "12 ta"], a: 2,
+    e: "BMC 9 ta blokdan iborat: mijozlar, qiymat, kanallar, munosabatlar, daromad, resurslar, faoliyat, hamkorlar, xarajatlar." },
+  { q: "Business Model Canvas mualliflari kimlar?", o: ["Michael Porter", "Alexander Osterwalder va Yves Pigneur", "Peter Drucker va Philip Kotler", "Steve Jobs va Steve Wozniak"], a: 1,
+    e: "BMC Osterwalder va Pigneurning «Business Model Generation» (2010) kitobida keng tanilgan." },
+  { q: "Tadbirkorlikni oddiy biznes faoliyatidan nima ajratib turadi?", o: ["Daromad olish", "Soliq to'lash", "Innovatsiya va tavakkalchilik", "Xodim yollash"], a: 2,
+    e: "Tadbirkor xavf-xatarni qabul qilib, yangi g'oyani amalga oshiradi." },
+  { q: "Taksi xizmati qaysi biznes sohasiga kiradi?", o: ["Savdo", "Xizmat ko'rsatish", "Ishlab chiqarish", "IT va texnologiya"], a: 1,
+    e: "Taksi odamlarga xizmat ko'rsatadi — mahsulot sotmaydi va ishlab chiqarmaydi." },
+  { q: "Biznes ishlash mexanizmining birinchi bosqichi qaysi?", o: ["Daromad olish", "Reklama qilish", "Muammo (ehtiyoj)ni aniqlash", "Mahsulotni sotish"], a: 2,
+    e: "Avval mijozning muammosi yoki ehtiyoji aniqlanadi, keyin unga yechim yaratiladi." },
+  { q: "«Mijozga qanday qiymat beramiz?» savoli qaysi blokka tegishli?", o: ["Value Propositions", "Channels", "Key Resources", "Cost Structure"], a: 0,
+    e: "Value Propositions — qiymat taklifi: mijoz muammosini qanday hal qilamiz." },
+  { q: "Onlayn kurs uchun YouTube va mobil ilova qaysi blokka kiradi?", o: ["Key Partnerships", "Channels", "Revenue Streams", "Customer Segments"], a: 1,
+    e: "Bular mijozga yetib borish kanallari." },
+  { q: "Server va o'qituvchilar maoshi qaysi blokda ko'rsatiladi?", o: ["Revenue Streams", "Key Activities", "Cost Structure", "Value Propositions"], a: 2,
+    e: "Bu biznesning asosiy xarajatlari — Cost Structure." },
+  { q: "Mentor yordami va o'quvchilar chati qaysi blokka misol?", o: ["Customer Relationships", "Key Resources", "Channels", "Key Partnerships"], a: 0,
+    e: "Mijoz bilan qanday munosabat qurilishi — Customer Relationships." },
+  { q: "BPM nima?", o: ["Buxgalteriya hisobi dasturi", "Biznes jarayonlarini modellashtirish, avtomatlashtirish, nazorat qilish va takomillashtirish yondashuvi", "Marketing strategiyasining turi", "Moliyaviy hisobot shakli"], a: 1,
+    e: "BPM — Business Process Management: jarayonlarni boshqarish intizomi." },
+  { q: "Onlayn buyurtma jarayonida bitta bosqich kechiksa nima bo'ladi?", o: ["Hech narsa o'zgarmaydi", "Faqat o'sha bosqich sekinlashadi", "Butun jarayon sekinlashadi", "Jarayon tezlashadi"], a: 2,
+    e: "Bosqichlar ketma-ket bog'langan, shuning uchun bitta «tor joy» butun jarayonni sekinlashtiradi." },
+  { q: "Onlayn kurs uchun universitetlar va IT-kompaniyalar qaysi blokka kiradi?", o: ["Customer Segments", "Key Partnerships", "Revenue Streams", "Key Activities"], a: 1,
+    e: "Ular biznesga yordam beradigan asosiy hamkorlar." },
+];
+
+(function quiz() {
+  const $ = id => document.getElementById(id);
+  let i = 0, score = 0;
+  function render() {
+    const item = QUESTIONS[i];
+    $("qcount").textContent = `Savol ${i + 1} / ${QUESTIONS.length}`;
+    $("qscore").textContent = `To'g'ri javoblar: ${score}`;
+    $("qprog").style.width = `${(i / QUESTIONS.length) * 100}%`;
+    $("qtext").textContent = item.q;
+    $("qexp").textContent = "";
+    $("qnext").hidden = true;
+    const opts = $("qopts");
+    opts.innerHTML = "";
+    item.o.forEach((text, k) => {
+      const b = document.createElement("button");
+      b.className = "opt";
+      b.textContent = `${"ABCD"[k]}) ${text}`;
+      b.onclick = () => choose(k);
+      opts.appendChild(b);
+    });
+  }
+  function choose(k) {
+    const item = QUESTIONS[i];
+    const btns = [...$("qopts").children];
+    btns.forEach(b => b.disabled = true);
+    btns[item.a].classList.add("ok");
+    if (k === item.a) score++; else btns[k].classList.add("no");
+    $("qexp").textContent = (k === item.a ? "✅ To'g'ri! " : "❌ Noto'g'ri. ") + item.e;
+    $("qscore").textContent = `To'g'ri javoblar: ${score}`;
+    $("qnext").textContent = i === QUESTIONS.length - 1 ? "Natijani ko'rish" : "Keyingi savol →";
+    $("qnext").hidden = false;
+    $("qnext").focus();
+  }
+  function finish() {
+    $("qprog").style.width = "100%";
+    const pct = Math.round(score / QUESTIONS.length * 100);
+    const msg = pct >= 85 ? "Ajoyib natija! 🎉" : pct >= 60 ? "Yaxshi! Bir nechta mavzuni takrorlab chiqing." : "Mavzuni yana bir bor ko'rib chiqing.";
+    $("qcount").textContent = "Test yakunlandi";
+    $("qtext").textContent = `${score} / ${QUESTIONS.length} to'g'ri (${pct}%). ${msg}`;
+    $("qopts").innerHTML = "";
+    $("qexp").textContent = "";
+    $("qnext").textContent = "Qaytadan boshlash";
+    $("qnext").hidden = false;
+    $("qnext").onclick = () => { i = 0; score = 0; $("qnext").onclick = next; render(); };
+  }
+  function next() { i++; i < QUESTIONS.length ? render() : finish(); }
+  $("qnext").onclick = next;
+  render();
+})();
+
+Reveal.initialize({
+  hash: true, slideNumber: "c/t", width: 1280, height: 720, margin: 0.04,
+  center: false, transition: "slide", controls: true, progress: true,
+});
+</script>
+</body>
+</html>
